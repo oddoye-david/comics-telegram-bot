@@ -49,11 +49,34 @@ bot.onText(/\/usd (.+)/, function (msg, match) {
                 });
             });
     }
+})
 
-    // if number, do forex check
+// Matches "/gbp [amount]" 
+bot.onText(/\/gbp (.+)/, function (msg, match) {
 
-    // else send error message 
+    const chatId = msg.chat.id
+    const resp = match[1] // the captured amount
+        // console.log(msg);
 
-    // send back the matched "whatever" to the chat 
-
+    // check if number
+    if (!parseFloat(resp)) {
+        bot.sendMessage(chatId, `@${msg.from.username} *${resp}* is not a valid nummber. Does not compute.`, {
+            parse_mode: 'Markdown'
+        });
+    } else {
+        bot.sendChatAction(chatId, 'typing')
+            .then(() => {
+                forex.convertForex(resp, 'GBP')
+                    .then((res) => {
+                        bot.sendMessage(chatId, `@${msg.from.username} £${resp} is equivalent to *${res.amount}* at an exchange rate of _${res.exchangeRate}_`, {
+                            parse_mode: 'Markdown'
+                        });
+                    });
+            })
+            .catch((err) => {
+                bot.sendMessage(chatId, `Oh my, my circuits seem to have been fried...paging @theRealBraZee`, {
+                    parse_mode: 'Markdown'
+                });
+            });
+    }
 })
