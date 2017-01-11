@@ -13,5 +13,8 @@
     "node-telegram-bot-api": "^0.25.0",
     "random-ua": "0.0.6",
     "request": "^2.79.0"
+  },
+  "engines": {
+    "node": "7.2.0"
   }
 }
