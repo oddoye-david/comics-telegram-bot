@@ -38,7 +38,7 @@ bot.onText(/^\/usd (\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/, function (msg, match) {
             .then(() => {
                 forex.convertForex(resp, 'USD')
                     .then((res) => {
-                        bot.sendMessage(chatId, `@${msg.from.username} $${resp} is equivalent to <b>${res.amount}</b> at an exchange rate of _${res.exchangeRate}_`, {
+                        bot.sendMessage(chatId, `@${msg.from.username} $${resp} is equivalent to <b>${res.amount}</b> at an exchange rate of <i>${res.exchangeRate}</i>`, {
                             parse_mode: 'HTML'
                         });
                     });
@@ -68,7 +68,7 @@ bot.onText(/^\/gbp (\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/, function (msg, match) {
             .then(() => {
                 forex.convertForex(resp, 'GBP')
                     .then((res) => {
-                        bot.sendMessage(chatId, `@${msg.from.username} £${resp} is equivalent to <b>${res.amount}</b> at an exchange rate of _${res.exchangeRate}_`, {
+                        bot.sendMessage(chatId, `@${msg.from.username} £${resp} is equivalent to <b>${res.amount}</b> at an exchange rate of <i>${res.exchangeRate}</i>`, {
                             parse_mode: 'HTML'
                         });
                     });
@@ -98,7 +98,7 @@ bot.onText(/^\/eur (\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/, function (msg, match) {
             .then(() => {
                 forex.convertForex(resp, 'EUR')
                     .then((res) => {
-                        bot.sendMessage(chatId, `@${msg.from.username} €${resp} is equivalent to <b>${res.amount}</b> at an exchange rate of _${res.exchangeRate}_`, {
+                        bot.sendMessage(chatId, `@${msg.from.username} €${resp} is equivalent to <b>${res.amount}</b> at an exchange rate of <i>${res.exchangeRate}</i>`, {
                             parse_mode: 'HTML'
                         });
                     });
