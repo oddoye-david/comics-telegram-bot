@@ -80,3 +80,33 @@ bot.onText(/\/gbp (.+)/, function (msg, match) {
             });
     }
 })
+
+// Matches "/eur [amount]" 
+bot.onText(/\/eur (.+)/, function (msg, match) {
+
+    const chatId = msg.chat.id
+    const resp = match[1] // the captured amount
+        // console.log(msg);
+
+    // check if number
+    if (!parseFloat(resp)) {
+        bot.sendMessage(chatId, `@${msg.from.username} *${resp}* is not a valid nummber. Does not compute.`, {
+            parse_mode: 'Markdown'
+        });
+    } else {
+        bot.sendChatAction(chatId, 'typing')
+            .then(() => {
+                forex.convertForex(resp, 'EUR')
+                    .then((res) => {
+                        bot.sendMessage(chatId, `@${msg.from.username} €${resp} is equivalent to *${res.amount}* at an exchange rate of _${res.exchangeRate}_`, {
+                            parse_mode: 'Markdown'
+                        });
+                    });
+            })
+            .catch((err) => {
+                bot.sendMessage(chatId, `Oh my, my circuits seem to have been fried...paging @theRealBraZee`, {
+                    parse_mode: 'Markdown'
+                });
+            });
+    }
+})

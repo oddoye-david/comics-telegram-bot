@@ -32,7 +32,7 @@ function convertForex(amount, base) {
         let result = $('span.uccResultAmount').text().replace(",", "").replace("GHS", "").replace(/\s\s*$/, '')
         // resolve promise if successful
         resolve({
-          amount: `GH¢ ${parseFloat(result).toLocaleString("en-GB", {style: "currency", currency: "GHS", minimumFractionDigits: 2})}`,
+          amount: `GH¢ ${parseFloat(result).toLocaleString("en-GB", {style: "currency", currency: "GHS", minimumFractionDigits: 2}).replace("GHS", "")}`,
           exchangeRate: (stripCommas(result) / amount).toFixed(2)
         })
       } else {
