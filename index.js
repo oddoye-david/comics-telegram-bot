@@ -30,22 +30,22 @@ bot.onText(/^\/usd (\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/, function (msg, match) {
 
     // check if number
     if (!parseFloat(resp)) {
-        bot.sendMessage(chatId, `@${msg.from.username} *${resp}* is not a valid nummber. Does not compute.`, {
-            parse_mode: 'Markdown'
+        bot.sendMessage(chatId, `@${msg.from.username} <b>${resp}</b> is not a valid nummber. Does not compute.`, {
+            parse_mode: 'HTML'
         });
     } else {
         bot.sendChatAction(chatId, 'typing')
             .then(() => {
                 forex.convertForex(resp, 'USD')
                     .then((res) => {
-                        bot.sendMessage(chatId, `@${msg.from.username} $${resp} is equivalent to *${res.amount}* at an exchange rate of _${res.exchangeRate}_`, {
-                            parse_mode: 'Markdown'
+                        bot.sendMessage(chatId, `@${msg.from.username} $${resp} is equivalent to <b>${res.amount}</b> at an exchange rate of _${res.exchangeRate}_`, {
+                            parse_mode: 'HTML'
                         });
                     });
             })
             .catch((err) => {
                 bot.sendMessage(chatId, `Oh my, my circuits seem to have been fried...paging @theRealBraZee`, {
-                    parse_mode: 'Markdown'
+                    parse_mode: 'HTML'
                 });
             });
     }
@@ -60,22 +60,22 @@ bot.onText(/^\/gbp (\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/, function (msg, match) {
 
     // check if number
     if (!parseFloat(resp)) {
-        bot.sendMessage(chatId, `@${msg.from.username} *${resp}* is not a valid nummber. Does not compute.`, {
-            parse_mode: 'Markdown'
+        bot.sendMessage(chatId, `@${msg.from.username} <b>${resp}</b> is not a valid nummber. Does not compute.`, {
+            parse_mode: 'HTML'
         });
     } else {
         bot.sendChatAction(chatId, 'typing')
             .then(() => {
                 forex.convertForex(resp, 'GBP')
                     .then((res) => {
-                        bot.sendMessage(chatId, `@${msg.from.username} £${resp} is equivalent to *${res.amount}* at an exchange rate of _${res.exchangeRate}_`, {
-                            parse_mode: 'Markdown'
+                        bot.sendMessage(chatId, `@${msg.from.username} £${resp} is equivalent to <b>${res.amount}</b> at an exchange rate of _${res.exchangeRate}_`, {
+                            parse_mode: 'HTML'
                         });
                     });
             })
             .catch((err) => {
                 bot.sendMessage(chatId, `Oh my, my circuits seem to have been fried...paging @theRealBraZee`, {
-                    parse_mode: 'Markdown'
+                    parse_mode: 'HTML'
                 });
             });
     }
@@ -90,22 +90,22 @@ bot.onText(/^\/eur (\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/, function (msg, match) {
 
     // check if number
     if (!parseFloat(resp)) {
-        bot.sendMessage(chatId, `@${msg.from.username} *${resp}* is not a valid nummber. Does not compute.`, {
-            parse_mode: 'Markdown'
+        bot.sendMessage(chatId, `@${msg.from.username} <b>${resp}</b> is not a valid nummber. Does not compute.`, {
+            parse_mode: 'HTML'
         });
     } else {
         bot.sendChatAction(chatId, 'typing')
             .then(() => {
                 forex.convertForex(resp, 'EUR')
                     .then((res) => {
-                        bot.sendMessage(chatId, `@${msg.from.username} €${resp} is equivalent to *${res.amount}* at an exchange rate of _${res.exchangeRate}_`, {
-                            parse_mode: 'Markdown'
+                        bot.sendMessage(chatId, `@${msg.from.username} €${resp} is equivalent to <b>${res.amount}</b> at an exchange rate of _${res.exchangeRate}_`, {
+                            parse_mode: 'HTML'
                         });
                     });
             })
             .catch((err) => {
                 bot.sendMessage(chatId, `Oh my, my circuits seem to have been fried...paging @theRealBraZee`, {
-                    parse_mode: 'Markdown'
+                    parse_mode: 'HTML'
                 });
             });
     }
