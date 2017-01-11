@@ -22,7 +22,7 @@ bot.onText(/\/ping/, function (msg, match) {
 })
 
 // Matches "/usd [amount]" 
-bot.onText(/\/usd (.+)/, function (msg, match) {
+bot.onText(/^\/usd (\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/, function (msg, match) {
 
     const chatId = msg.chat.id
     const resp = match[1] // the captured amount
@@ -52,7 +52,7 @@ bot.onText(/\/usd (.+)/, function (msg, match) {
 })
 
 // Matches "/gbp [amount]" 
-bot.onText(/\/gbp (.+)/, function (msg, match) {
+bot.onText(/^\/gbp (\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/, function (msg, match) {
 
     const chatId = msg.chat.id
     const resp = match[1] // the captured amount
@@ -82,7 +82,7 @@ bot.onText(/\/gbp (.+)/, function (msg, match) {
 })
 
 // Matches "/eur [amount]" 
-bot.onText(/\/eur (.+)/, function (msg, match) {
+bot.onText(/^\/eur (\d+|\d{1,3}(,\d{3})*)(\.\d+)?$/, function (msg, match) {
 
     const chatId = msg.chat.id
     const resp = match[1] // the captured amount
