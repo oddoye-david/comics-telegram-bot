@@ -29,10 +29,10 @@ function convertForex(amount, base) {
         // Parse HTML with cheerio
         let $ = cheerio.load(html)
         // jQuery style selector
-        let result = $('span.uccResultAmount').text().replace("GHS", "").replace(/\s\s*$/, '')
+        let result = $('span.uccResultAmount').text().replace(",", "").replace("GHS", "").replace(/\s\s*$/, '')
         // resolve promise if successful
         resolve({
-          amount: `GH¢ ${parseFloat(result).toFixed(2)}`,
+          amount: `GH¢ ${parseFloat(result).toLocaleString("en-GB", {style: "currency", currency: "GHS", minimumFractionDigits: 2})}`,
           exchangeRate: (stripCommas(result) / amount).toFixed(2)
         })
       } else {
