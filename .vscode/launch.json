@@ -11,7 +11,9 @@
             "program": "${workspaceRoot}/index.js",
             "cwd": "${workspaceRoot}",
             "env": {
-                "BOT_TOKEN": "309825664:AAFEtSWCvrbrjJV2UsFXo_jDviRIo2DoK3Q"
+                "BOT_TOKEN": "309825664:AAFEtSWCvrbrjJV2UsFXo_jDviRIo2DoK3Q",
+                "API_AI_TOKEN": "d7338242836f43a593f6cdfbe0a5a33a",
+                "COMICS_GROUP_ID": "-1001053476274"
             }
         },
         {
