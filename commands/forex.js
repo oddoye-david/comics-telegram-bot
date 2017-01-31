@@ -18,9 +18,9 @@ const config = require('../config')
  * @param  String base
  * @return String
  */
-function convertForex(amount, base) {
+function convertForex(amount, base, resultCurrency='GHS') {
   return new Promise((resolve, reject) => {
-    request(`${config.XE_WEB_URL}/?Amount=${amount}&From=${base}&To=GHS`, {
+    request(`${config.XE_WEB_URL}/?Amount=${amount}&From=${base}&To=${resultCurrency}`, {
       headers: {
         'User-Agent': random_ua.generate()
       }
@@ -32,8 +32,8 @@ function convertForex(amount, base) {
         let result = $('span.uccResultAmount').text().replace(",", "").replace("GHS", "").replace(/\s\s*$/, '')
         // resolve promise if successful
         resolve({
-          amount: `GH¢ ${parseFloat(result).toLocaleString("en-GB", {style: "currency", currency: "GHS", minimumFractionDigits: 2}).replace("GHS", "")}`,
-          exchangeRate: (stripCommas(result) / amount).toFixed(2)
+          amount: `${parseFloat(result).toLocaleString("en-GB", {style: "currency", currency: "GHS", minimumFractionDigits: 2}).replace("GHS", "")} ${resultCurrency}`,
+          exchangeRate: (stripCommas(result) / stripCommas(amount)).toFixed(5)
         })
       } else {
         // reject if an error, false for if there was no error but status code wasn't 200
